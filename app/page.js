@@ -1,12 +1,10 @@
 import { Button } from "@/components/ui/button"
 
 
-export default function Home() {
+export default function Dashboard() {
   return (
     <div>
-      <h2>Hello</h2>
-      <Button>Button</Button>
-
+    
     </div>
   );
 }
