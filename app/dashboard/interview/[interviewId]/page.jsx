@@ -11,7 +11,7 @@ import Link from "next/link";
 
 export default function Interview({ params }) {
   const [interviewId, setInterviewId] = useState("");
-  const [interviewJson, setInterviewJson] = useState();
+  const [interviewJson, setInterviewJson] = useState([]);
   const [webCamEnable, setWebCamEnable] = useState(false);
   const { user } = useUser();
 
@@ -28,8 +28,10 @@ export default function Interview({ params }) {
           eq(interviewId, MockInterviewSchema.mockId)
         )
       );
-    console.log("Interview Details", result);
-    setInterviewJson(result[0]);
+    if (result) {
+      console.log("Interview Details", result);
+      setInterviewJson(result[0]);
+    }
   };
 
   useEffect(() => {
@@ -42,8 +44,8 @@ export default function Interview({ params }) {
 
   useEffect(() => {
     user && handleGetInterviewDetails();
-    console.log("Interview Json", interviewJson);
   }, [user]);
+
   return (
     <div className="my-10">
       <h2 className="text-2xl font-bold">Let's Get Started</h2>

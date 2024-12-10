@@ -49,11 +49,15 @@ export default function RecordAnswerSection({
         .replace("```json", "")
         .replace("```", "");
 
-        console.log("Interview JSON", interviewJson)
-        console.log("Interview Question",interviewQueJson[activeQueIndex]?.question)
+      console.log("Interview JSON", interviewJson);
+      console.log(
+        "Interview Question",
+        interviewQueJson[activeQueIndex]?.question
+      );
       const JSONResponse = JSON.parse(cleanFeedbackJSON);
+
       const resp = await db.insert(FeedbackSchema).values({
-        mockIdRef: interviewJson.mockId,
+        mockIdRef: interviewJson?.mockId,
         question: interviewQueJson[activeQueIndex]?.question,
         correctAns: interviewQueJson[activeQueIndex]?.answer,
         userAns: userAnswer,
@@ -62,9 +66,10 @@ export default function RecordAnswerSection({
         createdAt: moment().format("DD-MM-yyyy"),
         userEmail: user?.primaryEmailAddress?.emailAddress,
       });
-      if(resp){
+
+      if (resp) {
         toast("User Answer Recorded Successfully!");
-        setUserAnswer("")
+        setUserAnswer("");
       }
     } else {
       SpeechRecognition.startListening({ continuous: true });

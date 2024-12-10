@@ -1,5 +1,6 @@
 import React from 'react'
 import CreateInterview from '../_components/CreateInterview'
+import InterviewList from '../_components/InterviewList'
 
 export default function Dashboard() {
   return (
@@ -9,6 +10,7 @@ export default function Dashboard() {
         <div className='grid grid-cols-1 md:grid-cols-3 my-5'>
            <CreateInterview/>
         </div>
+        <InterviewList/>
     </div>
   )
 }
